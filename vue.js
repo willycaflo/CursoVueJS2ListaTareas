@@ -24,7 +24,9 @@ var data = {
 Vue.component('titulo',{
     template: '<h2>{{ titulo }}</h2>',
     data: function(){
-        return {titulo: 'Lista de tareas'}
+        return {
+            titulo: 'Lista de tareas'
+        }
     }
 });
 
@@ -53,22 +55,28 @@ Vue.component('nueva-tarea',{
     }
 });
 
-var app = new Vue({
-    el: '#app',  
-    data: data,
-    methods:{
-        agregarTarea: function(){
-            var texto = this.nuevaTarea.trim();
-            if(texto){
-                this.tareas.push({
-                    texto: texto,
-                    terminada: false
-                });
-            }
-            this.nuevaTarea = '';
-        },
+//Componente para mostrar la lista de tareas
+Vue.component('lista-de-tareas',{
+    template: `<ul class="list-group">
+        <li v-for="(tarea, index) in tareas" class="list-group-item" v-bind:class="{terminada: tarea.terminada}">
+            {{ tarea.texto }}
+            <span class="pull-right">
+                <button type="button" class="btn btn-success btn-xs glyphicon glyphicon-ok" v-on:click="tarea.terminada = !tarea.terminada"></button>
+                <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-remove" v-on:click="borrar(index)"></button>
+            </span>
+        </li>
+    </ul>`,
+    data: function(){
+        return data;
+    },
+    methods: {
         borrar: function(indice){
             this.tareas.splice(indice,1);
         }
-    }  
+    }
+});
+
+var app = new Vue({
+    el: '#app',  
+    data: data,
 });
