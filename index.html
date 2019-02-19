@@ -18,13 +18,17 @@
     
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
-<body>
-    <div id="app">
-        {{ titulo }}
-        <input type="text" placeholder="Escribe una nueva tarea" v-model="nuevaTarea"/>
-        <button type="button" v-on:click="agregarTarea()">Agregar</button>
-        <ul>
-            <li v-for="tarea in tareas">
+<body class="container">
+    <div id="app" class="jumbotron">
+        <h2>{{ titulo }}</h2>
+        <div class="input-group">
+            <input type="text" placeholder="Escribe una nueva tarea" v-model="nuevaTarea" class="form-control"/>
+            <span class="input-group-btn">
+                <button type="button" v-on:click="agregarTarea()" class="btn btn-primary">Agregar</button>
+            </span>
+        </div>
+        <ul class="list-group">
+            <li v-for="tarea in tareas" class="list-group-item">
                 {{ tarea.texto }}
             </li>
         </ul>
