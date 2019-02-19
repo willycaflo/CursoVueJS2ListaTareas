@@ -1,7 +1,16 @@
+//Componente para desplegar el titulo
+Vue.component('titulo',{
+    template: '<h2>{{ titulo }}</h2>',
+    data: function(){
+        return {titulo: 'Lista de tareas'}
+    }
+});
+
+
+
 var app = new Vue({
     el: '#app',  
     data:{
-        titulo: 'Lista de tareas',
         tareas: [
             {
                 texto: 'Aprender Vue.js',
