@@ -15,6 +15,10 @@ new Vue({
                 texto: 'Aprender Ionic 2',
                 terminada: false
             },
+            {
+                texto: 'Aprender React',
+                terminada: false
+            },
         ]
     },
     methods:{
